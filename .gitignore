@@ -1,0 +1,8 @@
+
+env
+data_samples/**.json
+**/python/**
+.vscode/
+console_code
+*.zip
+
