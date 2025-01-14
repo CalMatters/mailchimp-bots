@@ -1,0 +1,18 @@
+# Function Update Code -- run from a zip folder
+
+## Mac/OS (From XXX_Zip folder)
+zip deployment-package.zip lambda_function.py
+
+## Windows Powershell (From XXX_Zip folder)
+Compress-Archive lambda_function.py ./deployment-package.zip 
+Compress-Archive lambda_function.py -Update ./deployment-package.zip 
+
+aws lambda update-function-code --function-name yourFunctionName --zip-file fileb://deployment-package.zip --profile yourProfileName
+
+# Layer Update Code -- run from the lambda_layer folder
+
+## Windows Powershell (From lambda_layer folder)
+Compress-Archive ./python ./lambda_layer.zip 
+Compress-Archive ./python -Update ./lambda_layer.zip 
+
+$ aws lambda publish-layer-version --layer-name yourLayerName --zip-file fileb://lambda_layer.zip --profile yourProfileName

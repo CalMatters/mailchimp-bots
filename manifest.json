@@ -1,0 +1,25 @@
+{
+    "display_information": {
+        "name": "Custom Mailchimp Metrics",
+        "description": "A daily dose of metrics",
+        "background_color": "#212121"
+    },
+    "features": {
+        "bot_user": {
+            "display_name": "Custom Mailchimp Metrics",
+            "always_online": false
+        }
+    },
+    "oauth_config": {
+        "scopes": {
+            "bot": [
+                "incoming-webhook"
+            ]
+        }
+    },
+    "settings": {
+        "org_deploy_enabled": false,
+        "socket_mode_enabled": false,
+        "token_rotation_enabled": false
+    }
+}
