@@ -68,7 +68,7 @@ campaign_id = get_campaign_data(campaign, 1)
 # pdb.set_trace()
 # If campaign_id is empty, exit the program
 if not campaign_id:
-	requests.post(os.environ['SLACK_WEBHOOK'], headers=headers, data='{"text": "*Note*: No WeeklyMatters campaign found for ' + last_send.strftime('%b %d, %Y') + '." }')
+	requests.post(os.environ['SLACK_WEBHOOK'], headers=headers, data='{"text": "*Note*: No yourCampaignNameHere campaign found for ' + last_send.strftime('%b %d, %Y') + '." }')
 
 # Set the fields you wish to get from the MailChimp Reports API request
 report_fields = [
@@ -121,7 +121,7 @@ set_blocks = {
 			"type": "header",
 			"text": {
 				"type": "plain_text",
-				"text": "WeeklyMatters | {}".format(last_send.strftime('%A, %B %d, %Y')),
+				"text": "yourCampaignNameHere | {}".format(last_send.strftime('%A, %B %d, %Y')),
 				"emoji": True
 			}
 		},
