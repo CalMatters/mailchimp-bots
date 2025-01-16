@@ -128,14 +128,6 @@ From the sidebar that appears select `Incoming Webhooks` then scroll down until 
 
 Save the `Webhook URL` into your env file for local development or as an environmental variable if you are setting up AWS. 
 
-### Resources:
-- [About API Keys | Mailchimp](https://mailchimp.com/help/about-api-keys/)
-- [Organize Campaigns into Folders | Mailchimp](https://mailchimp.com/help/organize-campaigns-into-folders/)
-- [Getting Started with Groups | Mailchimp](https://mailchimp.com/help/getting-started-with-groups/)
-- [Lists/Audiences > Interests | Mailchimp Marketing API Reference | Mailchimp Developer](https://mailchimp.com/developer/marketing/api/interests/)
-- [Introduction to Slack apps | Slack](https://api.slack.com/docs/apps)
-
-
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
 ## Choose Your Bot
