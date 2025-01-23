@@ -2,6 +2,8 @@
 
 #### How/where should this be tested?
 
-#### What are potential areas for future improvement? Are there any dependencies?
+#### What are potential areas for future improvement? 
+
+#### Are there any new dependencies?
 
 #### Are there any relevant issues?

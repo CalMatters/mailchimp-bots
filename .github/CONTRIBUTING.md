@@ -8,7 +8,7 @@ By participating in this project, you agree to abide by our [code of conduct](CO
 ## Issues
 #### Create a new issue
 
-Issues are a great place to share bugs, ideas for what could be improved and feature requests. Before creating a new issue, please double check for similar entries. 
+Issues are a great place to share bugs, ideas for what could be improved, and feature requests. Before creating a new issue, please double check for similar entries. 
 * If a related issue exists, please thread any relevant information under that issue as a comment.
 * If there are no related issues, you can open a new issue. Please be as descriptive as possible, including images and code where relevant. 
 
