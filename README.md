@@ -6,7 +6,7 @@ Bots that use the Mailchimp API to post newsletter metrics into Slack
 
 ## Ingredients 
 This bot requires a basic knowledge of 
-- [Python](https://www.programiz.com/python-programming)
+- [Python](https://wiki.python.org/moin/BeginnersGuide)
 - [AWS Lambda](https://docs.aws.amazon.com/lambda/latest/dg/lambda-python.html)
 - [The MailChimp API](https://mailchimp.com/developer/api/marketing/)
 - [Slack API](https://api.slack.com/messaging/webhooks)
@@ -17,33 +17,37 @@ It also requires:
 - A Slack channel
 - [A MailChimp API Key](https://mailchimp.com/help/about-api-keys/)
 
-Python Libraries 
+It uses two Python libraries:
 - `mailchimp_marketing` 
 - `requests`
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
 ## How it works
-Triggered by a `cron` job in Eventbridge, this Lambda function queries the MailChimp API to get metrics about a specified campaign. It returns the results of the query as a message to a specific channel in Slack.
+Triggered by a `cron` job in Eventbridge, a Lambda function queries the MailChimp API to get metrics about a specified campaign. It returns the results of the query as a message to a specific channel in Slack.
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
 ## Gathering Info
 
 To run any version of  the version Mailchimp Bots, you will need a Mailchimp API key, a folder or interest id and a Slack webhook. 
-<details>
-<summary>Expand for detailed instructions on how to get these elements.</summary>
 
 ### Mailchimp API Key
+<details>
+<summary>Expand for detailed instructions on how to get a Mailchimp API key.</summary>
+
 To get your Mailchimp API key, log into your Mailchimp account and open your profile. From the `Extras` section of the navigation, select `API Keys`.  Unfortunately, once a key has been created, it is not possible to gather its details, so you will need to generate a new one.
 
-Under the list of pre-existing keys, click `Create a Key`. Add a name under `API Key Name` and click `Generate Key `.
+Under the list of pre-existing keys, click `Create a Key`. Add a name under `API Key Name` and click `Generate Key`.
 
-Only click `Done` once you have saved the API key details; the keys can only be viewed directly after generation.
+Only click `Done` once you have saved the API key details; **keys can only be viewed directly after generation**.
+
+</details>
 
 Save the key into your env file for local development or as an environmental variable if you are setting up AWS.
 
 >Note: The bots access the Mailchimp API key using two pieces -- the key and the server. Separated by a dash, the server is usually the second, shorter section of the string provided by Mailchimp. 
+
 
 ### Folder ID
 Folders are the most reliable method currently supported by the bots to filter for campaigns. 
@@ -58,7 +62,7 @@ $ENV:MAILCHIMP_SERVER='usXX'
 export MAILCHIMP_KEY='abc....123'
 export MAILCHIMP_SERVER='usXX'
 ```
-Then run the `get_info.py` script in the `data_samples` folder. Three JSONs should appear. Open `folders.json` and find the folder your campaigns are saved in. If you have more than 50 folders, you may need to raise the count, or use `offset` until you find the correct id. 
+Run the `get_info.py` script in the `data_samples` folder. Three JSONs should appear. Open `folders.json` and find the folder your campaigns are saved in. If you have more than 50 folders, you may need to raise the count, or use `offset` until you find the correct id. 
 
 _Example Data_
 ```
@@ -71,7 +75,12 @@ _Example Data_
 Save the folder ID or interest ID into your env file for local development or as an environmental variable if you are setting up AWS. 
 
 ### Interest ID
-Although folder IDs are the most reliable method supported by these bots, another fairly reliable method is interest IDs, (visible in the Mailchimp application as Group Names). Before you find the interest ids, it’s important to find the group names in the Mailchimp application.
+Although folder IDs are the most reliable method supported by these bots, another fairly reliable method is interest IDs, (visible in the Mailchimp application as Group Names). 
+
+<details>
+<summary>Expand for detailed instructions on how to get an interest id.</summary>
+
+Before you find the interest ids, it’s important to find the group names in the Mailchimp application.
 
 After logging into Mailchimp, go to your audience dashboard and select `Manage audience` then `Manage contacts`. Make sure that the current audience is correct, then click `Groups` (interest categories in the Mailchimp API), and expand the relevant group. Underneath, you should see the group names. These are your interest IDs.
 
@@ -108,21 +117,16 @@ export INTEREST_CAT_ID='abc...123'
 Run `get_info.py` one last time. `interests.json` should appear and contain the relevant  interest IDs. 
 
 Save the interest ID into your env file for local development or as an environmental variable if you are setting up AWS. 
+</details>
 
 ### Slack Webhook
-These are write only bots: they use a very simple webhook to send data into a specific channel. To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. A pop-up window should appear, with two options; select `From a manifest`. Delete everything in the text box under the `JSON` tab. Copy the code in `manifest.json` file and paste it in. Click `Next` and then `Create`. 
+These are write only bots: they use a very simple webhook to send data into a specific channel. 
+
+To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. A pop-up window should appear, with two options; select `From a manifest`. Delete everything in the text box under the `JSON` tab. Copy the code in `manifest.json` and paste it in. Click `Next` and then `Create`. 
 
 From the sidebar that appears select `Incoming Webhooks` then scroll down until you see `Add New Webhook to Workspace`. Click that button, select the channel you want the metrics or test messages to go into and click `Allow`.
 
 Save the `Webhook URL` into your env file for local development or as an environmental variable if you are setting up AWS. 
-
-### Resources:
-- [About API Keys | Mailchimp](https://mailchimp.com/help/about-api-keys/)
-- [Organize Campaigns into Folders | Mailchimp](https://mailchimp.com/help/organize-campaigns-into-folders/)
-- [Getting Started with Groups | Mailchimp](https://mailchimp.com/help/getting-started-with-groups/)
-- [Lists/Audiences > Interests | Mailchimp Marketing API Reference | Mailchimp Developer](https://mailchimp.com/developer/marketing/api/interests/)
-- [Introduction to Slack apps | Slack](https://api.slack.com/docs/apps)
-</details>
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
@@ -207,7 +211,7 @@ Set the following environmental variables in the command line (e.g. `$ENV:MAILCH
 | FOLDER_ID | FOLDER_ID | INTEREST_ID |
 | SLACK_WEBHOOK | SLACK_WEBHOOK | SLACK_WEBHOOK |
 
-Navigate into `slackbots` or `local_development` and run the local bot script with python (example, from `slackbots`, `py local_development/interest_id_filter.py`). 
+Navigate into `mailchimp-bots` or `local_development` and run the local bot script with python (example: from `mailchimp-bots` run `py local_development/interest_id_filter.py`). 
 
 A message should appear in your test Slack/Slack channel. If you aren't seeing any campaigns, consider changing the starting date of the time range.  
 
