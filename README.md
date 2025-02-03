@@ -23,7 +23,7 @@ It uses two Python libraries:
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
-## How it works
+## How It Works
 Triggered by a `cron` job in [AWS Eventbridge](https://aws.amazon.com/eventbridge/), a Lambda function queries the Mailchimp API to get metrics about a specified campaign. It returns the results of the query as a message to a specific channel in Slack.
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
@@ -122,9 +122,9 @@ Save the interest ID into your env file for local development or as an environme
 ### Slack Webhook
 These bots use a simple webhook to send data into a specific channel. They are not interactive. 
 
-To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. In the resulting pop-up window, select `From a manifest`. Choose a workspace to develop the app in and hit `Next`. Delete everything in the text box under the `JSON` tab. Copy the code in `manifest.json` and paste it in. Click `Next` and then `Create`. 
+To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. In the resulting pop-up window, select `From a manifest`. Choose a workspace to develop the app in and hit `Next`. Delete everything in the text box. Copy the code from `manifest.json` and paste it in. Click `Next`, and then `Create`. 
 
-From the sidebar that appears select `Incoming Webhooks` then scroll down until you see `Add New Webhook to Workspace`. Click that button, select the channel you want the metrics or test messages to go into, then click `Allow`.
+From the sidebar that appears select `Incoming Webhooks` and scroll down until you see `Add New Webhook to Workspace`. Click that button, select the channel you want the metrics or test messages to go into, then click `Allow`.
 
 Save the `Webhook URL` into your env file for local development or as an environmental variable if you are setting up AWS. 
 
@@ -141,7 +141,7 @@ Save the `Webhook URL` into your env file for local development or as an environ
 ### Notes on the Daily Bot:
 - The bot provides a comparison between the selected campaign and the previous one. Since the newsletter was only sent on weekdays, if the selected campaign was sent on a Monday, the Friday campaign was used as the comparison. 
 - Since this bot uses a folder ID to filter the campaigns, and only one newsletter was sent per day, the time range was expansive.
-- While the top clicked links are highlighted in the Slack message, they were also filtered to exclude links that recieved copious amounts of bot traffic. 
+- While the top clicked links are highlighted in the Slack message, they were also filtered to exclude links that received copious amounts of bot traffic. 
 
 ### Notes on the Weekly Bot:
 - The bot provides a comparison between the selected campaign and the previous one.
@@ -157,7 +157,7 @@ Two of the libraries used by the bots, `requests` and `mailchimp_marketing`, are
 -  Navigate into the `lambda_layer` folder and zip the python folder and its contents. Save as `lambda_layer.zip`. 
 - Log in to AWS and navigate to Lambda. 
 - Choose `Layers` from the sidebar and click `Create layer`.
-- Give the layer a name, upload the `lambda_layer.zip` and click `Create`. 
+- Give the layer a name, upload the `lambda_layer.zip`, and click `Create`. 
 - Note the `ARN`; it will be used to connect the layer to our function.
 #### Note: Lambda layers can be updated from the commandline
 ```
@@ -200,7 +200,7 @@ $ aws lambda publish-layer-version --layer-name yourLayerName --zip-file fileb:/
 ## Local Development
 Although you can plug and play with these bots, you can also adjust them. The `local_development` folder contains copies of the Daily and Weekly bot that can be run directly from the terminal or command line on your computer, allowing you the freedom to make changes and immediately test them. We recommend creating a separate Slack workspace or test channel where   you can send as many tests as you need to customize the bot to your use case. 
 
-`local_development` also contains a sample bot, `interest_id_filter.py`, that filters the campaigns using interest ids instead of folders ids.
+The `local_development` folder also contains a sample bot, `interest_id_filter.py`, that filters the campaigns using interest ids instead of folders ids.
 
 ### Running a Local Bot 
 Set the following environmental variables in the command line (e.g. `$ENV:MAILCHIMP_KEY='abc...123`). 
@@ -220,14 +220,14 @@ A message should appear in your test Slack/Slack channel. If you aren't seeing a
 
 <p align="right"><a href="#table-of-contents">Back to Top ↑</a></p>
 
-## Resources:
+## Resources
 - [About API Keys | Mailchimp](https://mailchimp.com/help/about-api-keys/)
 - [Organize Campaigns into Folders | Mailchimp](https://mailchimp.com/help/organize-campaigns-into-folders/)
 - [Getting Started with Groups | Mailchimp](https://mailchimp.com/help/getting-started-with-groups/)
 - [Lists/Audiences > Interests | Mailchimp Marketing API Reference | Mailchimp Developer](https://mailchimp.com/developer/marketing/api/interests/)
 - [Introduction to Slack apps | Slack](https://api.slack.com/docs/apps)
 - [Update functions from the console](https://docs.aws.amazon.com/lambda/latest/dg/python-package.html#python-package-dependencies)
-  - Checkout `example_aws_command_line_updates` for some examples of updating the a Lambda function from the command line. 
+  - Checkout `example_aws_command_line_updates` for some examples of updating a Lambda function from the command line. 
 - [Lambda Layers](https://docs.aws.amazon.com/lambda/latest/dg/chapter-layers.html)
 - [Triggers with Eventbridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html)
 
