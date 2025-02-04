@@ -30,7 +30,7 @@ Triggered by a `cron` job in [AWS Eventbridge](https://aws.amazon.com/eventbridg
 
 ## Gathering Info
 
-To run one of the Mailchimp Bots, you will need a Mailchimp API key, a folder or interest id and a Slack webhook. 
+To run one of the Mailchimp Bots, you will need a Mailchimp API key, a folder or interest id, and a Slack webhook. 
 
 ### Mailchimp API Key
 <details>
@@ -122,9 +122,9 @@ Save the interest ID into your env file for local development or as an environme
 ### Slack Webhook
 These bots use a simple webhook to send data into a specific channel. They are not interactive. 
 
-To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. In the resulting pop-up window, select `From a manifest`. Choose a workspace to develop the app in and click `Next`. Delete everything in the text editor under the `JSON` tab. Copy the code from `manifest.json` and paste it into the editor. Click `Next`, and then `Create`. 
+To set this up, go to [Your Apps](https://api.slack.com/apps) and click `Create New App`. In the resulting pop-up window, select `From a manifest`. Choose a workspace to develop the app in and click `Next`. Delete everything in the text editor under the `JSON` tab. Copy the code in `manifest.json` and paste it into the editor. Click `Next`, and then `Create`. 
 
-From the sidebar that appears, select `Incoming Webhooks` and scroll down until you see `Add New Webhook to Workspace`. Click that button, select the channel you want the metrics or test messages to go into, then click `Allow`.
+From the sidebar that appears, select `Incoming Webhooks`, and scroll down until you see `Add New Webhook to Workspace`. Click that button, select the channel you want the metrics or test messages to go into, then click `Allow`.
 
 Save the `Webhook URL` into your env file for local development or as an environmental variable if you are setting up AWS. 
 
